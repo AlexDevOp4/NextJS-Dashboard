@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import api from "../../utils/api";
 
 const CreateTask = () => {
   const router = useRouter();
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("pending");
+  const [status, setStatus] = useState("Pending");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -15,13 +16,13 @@ const CreateTask = () => {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:8080/api/tasks", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ task, description, status }),
+      const response = await api.post("/tasks", {
+        task,
+        description,
+        status,
       });
 
-      if (!response.ok) throw new Error("Failed to create task");
+      if (response.status !== 201) throw new Error("Failed to create task");
 
       router.push("/dashboard"); // Redirect to Dashboard after success
     } catch (err) {
@@ -71,9 +72,9 @@ const CreateTask = () => {
               onChange={(e) => setStatus(e.target.value)}
               className="w-full mt-1 px-4 py-2 bg-gray-700 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              <option value="pending">Pending</option>
-              <option value="in-progress">In Progress</option>
-              <option value="completed">Completed</option>
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
             </select>
           </div>
 

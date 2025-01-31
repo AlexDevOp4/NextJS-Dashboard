@@ -13,7 +13,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-gray-900 h-screen p-4 flex flex-col ${isOpen ? "w-64" : "w-16"} transition-all duration-300`}
+      className={`bg-gray-900  h-screen p-4 flex flex-col ${isOpen ? "w-64" : "w-16"} transition-all duration-300`}
     >
       {/* Sidebar Toggle Button */}
       <button
@@ -28,7 +28,7 @@ const Sidebar = () => {
         <li>
           <a
             href="/dashboard"
-            className="flex items-center space-x-2 text-gray-300 hover:text-blue-400"
+            className="flex  items-center space-x-2 text-gray-300 hover:text-blue-400"
           >
             <FiHome />
             {isOpen && <span>Dashboard</span>}
@@ -40,7 +40,7 @@ const Sidebar = () => {
             className="flex items-center space-x-2 text-gray-300 hover:text-blue-400"
           >
             <FiList />
-            {isOpen && <span>Create Task</span>}
+            {isOpen && <span className="text-sm">Create Task</span>}
           </a>
         </li>
         <li>
